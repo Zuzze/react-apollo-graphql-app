@@ -1,6 +1,9 @@
 exports.resolvers = {
   Query: {
-    getAllPosts: () => {}
+    getAllPosts: async (root, args, { Post }) => {
+      const allPosts = await Post.find();
+      return allPosts;
+    }
   },
   Mutation: {
     addPost: async (

@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This full stack project is created with [Create React App](https://github.com/facebook/create-react-app), TypeScript, node.js, Express, Apollo 2, GraphQL and MongoDB.
+
+The Sample App can be used as a template for any full stack social media app that has users, likes and something to like
 
 ## Available Scripts
 
@@ -42,3 +44,32 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Edit data through graphQL playground
+
+Head to [http://localhost:4444/graphql](http://localhost:4444/graphql)
+
+Mutations example:
+
+```mutation {
+  addPost(title: "Sunny Cape Verde", description:"Cape Verde is a dry but beautiful country near Africa.", category: "City") {
+    # things you want to return for the client
+    title
+    description
+    category
+  }
+}
+```
+
+Query example:
+
+```query {
+  getAllPosts {
+    _id
+    title
+    category
+    likes
+    createdDate
+  }
+}
+```
