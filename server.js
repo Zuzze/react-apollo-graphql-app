@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const { ApolloServer } = require("apollo-server-express");
 const path = "/graphql";
 
@@ -30,6 +31,13 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path });
 
 const PORT = process.env.PORT || 4444;
+
+corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}`);
