@@ -22,4 +22,12 @@ exports.typeDefs = gql`
   type Query {
     getAllPosts: [Post]
   }
+  type Mutation {
+    addPost(
+      title: String!
+      description: String!
+      category: String!
+      username: String
+    ): Post
+  }
 `;

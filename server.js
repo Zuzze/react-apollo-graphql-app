@@ -18,6 +18,7 @@ const { resolvers } = require("./resolvers");
 const app = express();
 
 // Initializes Apollo with GraphQL
+// Open playground in http://localhost:4444/graphql
 const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app, path });
 
