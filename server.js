@@ -1,10 +1,31 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
+const { ApolloServer } = require("apollo-server-express");
+const path = "/graphql";
+
+// there were significant changes in apollo 2.0 and you don't need body-parser, makeExecutableSchemas etc anymore
+// see more about migration here [https://www.apollographql.com/docs/apollo-server/migration-two-dot/](https://www.apollographql.com/docs/apollo-server/migration-two-dot/)
 
 // Mongoose Schemas
 const Post = require("./models/Post");
 const User = require("./models/User");
+
+// Middleware
+const { typeDefs } = require("./schema");
+const { resolvers } = require("./resolvers");
+
+// Initializes app
+const app = express();
+
+// Initializes Apollo with GraphQL
+const server = new ApolloServer({ typeDefs, resolvers });
+server.applyMiddleware({ app, path });
+
+const PORT = process.env.PORT || 4444;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on PORT ${PORT}`);
+});
 
 require("dotenv").config({ path: "variables.env" });
 
@@ -24,12 +45,3 @@ mongoose
   .catch(err => console.error(err));
 // remove depracated ensureIndex warning
 mongoose.set("useCreateIndex", true);
-
-// Initializes app
-const app = express();
-
-const PORT = process.env.PORT || 4444;
-
-app.listen(PORT, () => {
-  console.log(`Server listening on PORT ${PORT}`);
-});
