@@ -1,22 +1,14 @@
 {
   "name": "graphql-app",
   "author": "Susanna Nevalainen",
-  "description": "A starter for React-Apollo-GraphQL project",
+  "description": "A starter for React-Apollo-GraphQL MongoDB project",
   "main": "server.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
     "apollo-server": "^2.9.16",
     "apollo-server-express": "^2.9.16",
     "bcrypt": "^3.0.7",
-    "body-parser": "^1.19.0",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -24,20 +16,12 @@
     "graphql": "^14.6.0",
     "graphql-tools": "^4.0.6",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.11",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.1",
-    "typescript": "~3.7.2"
+    "mongoose": "^5.8.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "server": "nodemon server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+    "client": "cd client && yarn start",
+    "dev": "concurrently --names \"server,client\" \"yarn server --silent\" \"yarn client --silent\""
   },
   "eslintConfig": {
     "extends": "react-app"
