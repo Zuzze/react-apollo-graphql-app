@@ -19,7 +19,14 @@ const app = express();
 
 // Initializes Apollo with GraphQL
 // Open playground in http://localhost:4444/graphql
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ rew, res }) => ({
+    Post,
+    User
+  })
+});
 server.applyMiddleware({ app, path });
 
 const PORT = process.env.PORT || 4444;
