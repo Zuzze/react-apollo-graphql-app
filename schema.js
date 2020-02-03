@@ -22,9 +22,15 @@ exports.typeDefs = gql`
     joinDate: String
     favorites: [Post]
   }
+
   type Query {
     getAllPosts: [Post]
   }
+
+  type Token {
+    token: String!
+  }
+
   type Mutation {
     addPost(
       title: String!
@@ -32,5 +38,7 @@ exports.typeDefs = gql`
       category: String!
       username: String
     ): Post
+
+    signupUser(username: String!, email: String!, password: String!): Token
   }
 `;
