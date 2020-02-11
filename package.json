@@ -4,6 +4,7 @@
   "description": "A starter for React-Apollo-GraphQL MongoDB project",
   "main": "server.js",
   "version": "0.1.0",
+  "license": "UNLICENSED",
   "private": true,
   "dependencies": {
     "apollo-server": "^2.9.16",
