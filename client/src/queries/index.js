@@ -21,7 +21,7 @@ export const GET_ALL_POSTS = gql`
 /* User Mutations */
 
 export const SIGNUP_USER = gql`
-  mutation($username: String!, email: $email, password: $password ) {
+  mutation($username: String!, $email: String!, $password: String!) {
     signupUser(username: $username, email: $email, password: $password) {
       token
     }
