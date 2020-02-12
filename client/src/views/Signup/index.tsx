@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Mutation } from "react-apollo";
+import { SIGNUP_USER } from "../../queries";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,35 +27,41 @@ const Signup = () => {
   return (
     <div className="App">
       <h1>Signup</h1>
-      <form className="form" onSubmit={signup}>
-        <label htmlFor="username">User name</label> <br />
-        <input
-          type="text"
-          name="username"
-          value={form.username}
-          onChange={handleFormChange}
-        />
-        <br /> <br />
-        <label htmlFor="email">Email</label> <br />
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleFormChange}
-        />
-        <br /> <br />
-        <label htmlFor="password">Password</label> <br />
-        <input
-          type={showPassword ? "text" : "password"}
-          name="password"
-          value={form.password}
-          onChange={handleFormChange}
-        />
-        <button onClick={togglePasswordMask}>Mask</button>
-        <br />
-        <br />
-        <button type="submit">Send</button>
-      </form>
+      <Mutation mutation={SIGNUP_USER}>
+        {() => {
+          return (
+            <form className="form" onSubmit={signup}>
+              <label htmlFor="username">User name</label> <br />
+              <input
+                type="text"
+                name="username"
+                value={form.username}
+                onChange={handleFormChange}
+              />
+              <br /> <br />
+              <label htmlFor="email">Email</label> <br />
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleFormChange}
+              />
+              <br /> <br />
+              <label htmlFor="password">Password</label> <br />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={form.password}
+                onChange={handleFormChange}
+              />
+              <button onClick={togglePasswordMask}>Mask</button>
+              <br />
+              <br />
+              <button type="submit">Send</button>
+            </form>
+          );
+        }}
+      </Mutation>
     </div>
   );
 };
