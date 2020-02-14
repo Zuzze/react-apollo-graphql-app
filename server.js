@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 const { ApolloServer } = require("apollo-server-express");
 const path = "/graphql";
 
@@ -25,7 +26,8 @@ const server = new ApolloServer({
   resolvers,
   context: ({ rew, res }) => ({
     Post,
-    User
+    User,
+    currentUser
   })
 });
 server.applyMiddleware({ app, path });
@@ -43,7 +45,16 @@ app.use(cors(corsOptions));
 
 app.use(async (req, res, next) => {
   const token = req.headers["authorization"];
-  console.log(token);
+  if (token !== "null") {
+    try {
+      const currentUser = await jwt.verify(token, process.env.SECRET);
+      console.log(currentUser);
+      req.currentUser = currentUser;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  console.log(token, typeof token);
   next();
 });
 

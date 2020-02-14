@@ -25,6 +25,8 @@ exports.typeDefs = gql`
 
   type Query {
     getAllPosts: [Post]
+
+    getCurrentUser: User
   }
 
   type Token {

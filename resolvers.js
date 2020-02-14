@@ -11,6 +11,16 @@ exports.resolvers = {
     getAllPosts: async (root, args, { Post }) => {
       const allPosts = await Post.find();
       return allPosts;
+    },
+    getCurrentUser: async (root, args, { currentUser, User }) => {
+      if (!currentUser) {
+        return null;
+      }
+      const user = await User.findOne({
+        username: currentUser.username
+      }).populate({ path: "favorites", model: "Post" });
+
+      return user;
     }
   },
   Mutation: {
