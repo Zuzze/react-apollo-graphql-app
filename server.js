@@ -39,6 +39,14 @@ corsOptions = {
 
 app.use(cors(corsOptions));
 
+// Set up JWT authentication middleware
+
+app.use(async (req, res, next) => {
+  const token = req.headers["authorization"];
+  console.log(token);
+  next();
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}`);
 });

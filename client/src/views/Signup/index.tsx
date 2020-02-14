@@ -33,9 +33,10 @@ const Signup = () => {
   const signup = (e: React.SyntheticEvent, signupUser: Function): void => {
     e.preventDefault();
     signupUser()
-      .then((data: Object) => {
+      .then((data: any) => {
         setForm(initialState);
         console.log("signing up", data);
+        localStorage.setItem("token", data.data.signupUser.token);
       })
       .catch((error: Error) => console.error(error));
   };

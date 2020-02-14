@@ -9,11 +9,6 @@ interface LoginData {
   error: Error;
 }
 
-interface LoginVariables {
-  username: string;
-  password: string;
-}
-
 const initialState = {
   username: "",
   password: ""
@@ -26,9 +21,10 @@ const Login = () => {
   const login = (e: React.SyntheticEvent, loginUser: Function): void => {
     e.preventDefault();
     loginUser()
-      .then((data: Object) => {
+      .then((data: any) => {
         setForm(initialState);
         console.log("logging in", data);
+        localStorage.setItem("token", data.data.loginUser.token);
       })
       .catch((error: Error) => console.error(error));
   };
