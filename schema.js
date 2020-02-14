@@ -39,6 +39,8 @@ exports.typeDefs = gql`
       username: String
     ): Post
 
+    loginUser(username: String!, password: String!): Token
+
     signupUser(username: String!, email: String!, password: String!): Token
   }
 `;
